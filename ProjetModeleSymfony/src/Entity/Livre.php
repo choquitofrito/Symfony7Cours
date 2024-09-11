@@ -34,7 +34,7 @@ class Livre
     /**
      * @var Collection<int, Exemplaire>
      */
-    #[ORM\OneToMany(targetEntity: Exemplaire::class, mappedBy: 'livre', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Exemplaire::class, mappedBy: 'livre', orphanRemoval: true, cascade: ['persist'])]
     private Collection $exemplaires;
 
     /**
