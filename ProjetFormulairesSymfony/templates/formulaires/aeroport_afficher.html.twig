@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormulairesController!{% endblock %}
+
+{% block body %}
+
+{{ form_start (formulaireAeroport) }}
+{{ form_row (formulaireAeroport.nom) }}
+{{ form_row (formulaireAeroport.code) }}
+{{ form_row (formulaireAeroport.description) }}
+{{ form_row (formulaireAeroport.dateMiseEnService) }}
+{{ form_row (formulaireAeroport.heureMiseEnService) }}
+<input type="submit" value="Insérer">
+{{ form_end (formulaireAeroport) }}
+
+{% endblock %}
