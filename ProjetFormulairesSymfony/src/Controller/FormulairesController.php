@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Livre;
 use App\Entity\Aeroport;
+
 use App\Form\AeroportType;
-
+use App\Form\LivreType;
 use Doctrine\Persistence\ManagerRegistry;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -52,4 +53,29 @@ class FormulairesController extends AbstractController
 
         return $this->render('formulaires/aeroport_afficher.html.twig', $vars);
     }
+
+    #[Route('/formulaires/livre/form/insert')]
+    public function livreFormInsert (Request $req, ManagerRegistry $doctrine){
+
+        $livre = new Livre ();
+
+        $form = $this->createForm (LivreType::class, $livre);
+
+        $form->handleRequest($req);
+
+        if ($form->isSubmitted()){
+            $em = $doctrine->getManager();
+            $em->persist($livre);
+            $em->flush();
+            dump ($form->getErrors());
+            dd("end action");
+        }
+
+        $vars = ['form' => $form];
+        return $this->render ('formulaires/livre_form_insert.html.twig', $vars);
+        
+
+    }
+
+    
 }

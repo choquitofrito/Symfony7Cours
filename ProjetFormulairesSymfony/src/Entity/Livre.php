@@ -59,7 +59,7 @@ class Livre
         }
     }
 
-    public function __construct(array $init)
+    public function __construct(array $init = [])
     {
         $this->hydrate($init);
         $this->exemplaires = new ArrayCollection();

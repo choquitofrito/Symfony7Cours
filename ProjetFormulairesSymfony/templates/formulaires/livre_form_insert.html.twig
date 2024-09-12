@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    
+{{ form_start (form) }}
+
+{{ form_row (form.titre) }}
+{{ form_row (form.prix) }}
+{{ form_row (form.description) }}
+{{ form_row (form.isbn) }}
+{{ form_row (form.datePublication) }}
+{{ form_row (form.auteurs) }}
+{# {{ form_widget (form._token)}} #}
+<input type="submit" value="Insérer">
+{{ form_end(form) }}
+
+{% endblock %}
