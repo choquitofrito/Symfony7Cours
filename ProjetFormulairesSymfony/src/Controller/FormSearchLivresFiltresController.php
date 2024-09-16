@@ -27,12 +27,12 @@ class FormSearchLivresFiltresController extends AbstractController
             // $livres = $rep->findAll();
 
             $livres = $rep->livresEntreDeuxPrix ($form->getData());
+            dd($livres);
 
             $vars = ['livres' => $livres];
 
-            // dd($livres);
 
-            return $this->render ('form_search_livres_filtres/afficher.html.twig', $vars);
+            return $this->render ('form_search_livres_filtres/livres_search_afficher.html.twig', $vars);
         }
 
         $vars = ['form' => $form];

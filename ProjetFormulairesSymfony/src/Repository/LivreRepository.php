@@ -11,22 +11,26 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LivreRepository extends ServiceEntityRepository
 {
+    private ManagerRegistry $doctrine;
+
     public function __construct(ManagerRegistry $registry)
     {
+
         parent::__construct($registry, Livre::class);
         // injecter $doctrine
+        $this->doctrine = $registry;
     }
 
     public function livresEntreDeuxPrix(array $filtres){
 
-        $em = $this->getEntityManager();
-        $query = $em->createQuery('SELECT l.titre, l.prix, l.description FROM App\Entity\Livre l WHERE l.prix BETWEEN :prixMin AND :prixMax');
+        $em = $this->doctrine->getManager();
+        $query = $em->createQuery('SELECT l.titre, l.prix, l.description FROM App\Entity\Livre l WHERE l.prix BETWEEN :prixMin AND :prixMax AND l.titre LIKE UPPER(:titre)');
         $query->setParameter ("prixMin", $filtres['prixMin']);
         $query->setParameter ("prixMax", $filtres['prixMax']);
+        $query->setParameter ("titre", "%" . mb_strtoupper($filtres['titre']) . "%");
         $livres = $query->getResult();
-        dd($livres);
+        return $livres;
     }
-
 
 //    /**
 //     * @return Livre[] Returns an array of Livre objects
