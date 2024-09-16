@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormSearchLivresFiltresController!{% endblock %}
+
+{% block body %}
+
+{{ form_start (form) }}
+{{ form_row(form.titre)}}
+{{ form_row(form.prixMin)}}
+{{ form_row(form.prixMax)}}
+<input type="submit" value="Chercher!">
+{{ form_end(form) }} 
+
+{# {% for elem in form %}
+{{ form_row (elem) }}
+<input type="submit" value="Chercher!">
+{% endfor %}  #}
+
+
+{% endblock %}

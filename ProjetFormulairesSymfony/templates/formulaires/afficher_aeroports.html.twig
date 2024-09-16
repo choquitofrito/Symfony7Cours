@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+Vue qui affiche les aéroports
+
+{# {{ dump (aeroports) }} #}
+
+<ul>
+{% for aeroport in aeroports %}
+    <li>{{ aeroport.code }} - {{ aeroport.nom }}
+ 
+    <a href="{{ path ('updateAeroport', { id: aeroport.id } ) }}">Update</a>
+
+    <a href="{{ path ('deleteAeroport', { id: aeroport.id } ) }}">Delete</a>
+    
+    </li>    
+{% endfor %}
+</ul>
+
+
+{% endblock %}

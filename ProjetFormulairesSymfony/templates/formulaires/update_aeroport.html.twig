@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+Form update
+{{ form_start (form)}}
+{{ form_row (form.nom) }}
+{{ form_row (form.code) }}
+{{ form_row (form.description) }}
+{{ form_row (form.dateMiseEnService) }}
+{{ form_row (form.heureMiseEnService) }}
+<input type="submit" value="Update!">
+{{ form_end (form)}}
+
+{% endblock %}
