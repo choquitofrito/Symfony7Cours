@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\SearchFiltreLivresType;
+use App\Repository\LivreRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class FormSearchLivresFiltresController extends AbstractController
 {
     #[Route('/livres/search', name: 'livres_search')]
-    public function livresSearch(Request $req): Response
+    public function livresSearch(Request $req, LivreRepository $rep): Response
     {
 
         $form = $this->createForm(SearchFiltreLivresType::class);
@@ -20,7 +21,18 @@ class FormSearchLivresFiltresController extends AbstractController
 
         // gestion du submit du form
         if ($form->isSubmitted()){
-            dd($form->getData());
+        
+            // dd($form->getData());
+
+            // $livres = $rep->findAll();
+
+            $livres = $rep->livresEntreDeuxPrix ($form->getData());
+
+            $vars = ['livres' => $livres];
+
+            // dd($livres);
+
+            return $this->render ('form_search_livres_filtres/afficher.html.twig', $vars);
         }
 
         $vars = ['form' => $form];
