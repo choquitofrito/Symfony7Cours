@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{{ form_start (form) }}
+{{ form_start (form, {'action': path('livres_search_afficher_resultat'), 'method': 'POST'}) }}
 {{ form_row(form.titre)}}
 {{ form_row(form.prixMin)}}
 {{ form_row(form.prixMax)}}
