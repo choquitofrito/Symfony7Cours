@@ -1,0 +1,29 @@
+{# navigation, pour toutes les pages  #}
+<nav>
+	{# liens sans connexion  #}
+	<a href="">Option 1 publique</a>
+	<a href="">Option 2 publique</a>
+
+	{# liens pour l'admin  #}
+	{% if is_granted ('ROLE_ADMIN') %}
+		<a href="">Option 3 admin</a>
+		<a href="">Option 4 admin</a>
+	{% endif %}
+
+	{# liens pour les users connectés,
+				peu importe le role #}
+	{% if is_granted ('ROLE_USER') %}
+		<a href="">Option 5 user</a>
+		<a href="">Option 6 user</a>
+	{% endif %}
+
+	{% if app.user %}
+		Connecté:
+		{{ app.user.email }}
+		{# et toutes les options dispo
+		                uniquement avec connexion #}
+		<a href="{{ path ('app_logout') }}">Logout</a>
+	{% else %}
+		<a href="{{ path ('app_login') }}">Login</a>
+	{% endif %}
+</nav>
