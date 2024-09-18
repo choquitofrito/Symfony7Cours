@@ -27,13 +27,12 @@ class FormSearchLivresFiltresController extends AbstractController
             // $livres = $rep->findAll();
 
             $livres = $rep->livresEntreDeuxPrix ($form->getData());
-            dd($livres);
 
             $vars = ['livres' => $livres];
 
             // ne rendez pas une vue ici, la bonne pratique est de ré-diriger vers une action
             // return $this->render ('form_search_livres_filtres/livres_search_afficher.html.twig', $vars);
-            return $this->redirectToRoute('livresSearchAfficherResultat');
+            return $this->redirectToRoute('livres_search_afficher_resultat');
   
         }
 
