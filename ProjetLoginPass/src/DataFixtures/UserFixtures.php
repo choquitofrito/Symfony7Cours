@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+
 use App\Entity\User;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -28,6 +29,9 @@ class UserFixtures extends Fixture
             // on crée un password hashé
             $hashedPassword = $this->passwordHasher->hashPassword($user, 'lepassword');
 
+            $user->setNom("nom" . $i);
+            $user->setDateNaissance(new \DateTime());
+            
             $user->setPassword($hashedPassword);
 
             $manager->persist($user);
@@ -39,6 +43,8 @@ class UserFixtures extends Fixture
             $user->setRoles(['ROLE_ADMIN']);
             // dd($user->getRoles());
             $hashedPassword = $this->passwordHasher->hashPassword($user, 'lepassword');
+            $user->setNom("nom" . ($i + 5));
+            $user->setDateNaissance(new \DateTime());
 
             $user->setPassword($hashedPassword);
 
