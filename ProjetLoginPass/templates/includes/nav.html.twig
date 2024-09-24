@@ -1,3 +1,4 @@
+{# /templates/includes/nav.html.twig #}
 {# navigation, pour toutes les pages  #}
 <nav>
 	{# liens sans connexion  #}
@@ -17,13 +18,14 @@
 		<a href="">Option 6 user</a>
 	{% endif %}
 
+    {# vérifiez que l'objet user existe avant d'accéder à ses propriétés! %}
 	{% if app.user %}
 		Connecté:
 		{{ app.user.email }}
-		{# et toutes les options dispo
-		                uniquement avec connexion #}
+		{# si connecté, on afficher le lien de logout #}
 		<a href="{{ path ('app_logout') }}">Logout</a>
 	{% else %}
+		{# si pas connecté, on afficher le lien de login #}
 		<a href="{{ path ('app_login') }}">Login</a>
 	{% endif %}
 </nav>
